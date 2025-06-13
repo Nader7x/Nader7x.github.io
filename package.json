@@ -1,0 +1,40 @@
+{
+  "name": "nader-portfolio",
+  "version": "1.0.0",
+  "description": "Professional portfolio website for Nader Elsayed Elnagar",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=index.html",
+    "build": "echo 'Building for production...' && echo 'Build complete!'",
+    "deploy": "gh-pages -d .",
+    "lint": "htmlhint index.html && stylelint styles.css && eslint script.js"
+  },
+  "keywords": [
+    "portfolio",
+    "software-engineer",
+    "web-development",
+    "javascript",
+    "css",
+    "html"
+  ],
+  "author": "Nader Elsayed Elnagar <naderelsayed9x@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://nader7x.me",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nader7x/Nader7x.github.io.git"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "gh-pages": "^4.0.0",
+    "htmlhint": "^1.1.4",
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard": "^34.0.0",
+    "eslint": "^8.48.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.6.0"
+}
