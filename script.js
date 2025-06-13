@@ -156,4 +156,24 @@ document.querySelectorAll('.project-card').forEach(card => {
 // Social links hover effect
 document.querySelectorAll('.social-link').forEach(link => {
     link.addEventListener('mouseenter', () => {
-        link.style.transform
+        link.style.transform = 'translateY(-2px) scale(1.1)';
+    });
+    
+    link.addEventListener('mouseleave', () => {
+        link.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// Prevent body scroll when mobile menu is open
+hamburger.addEventListener('click', () => {
+    document.body.classList.toggle('menu-open');
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    }
+});
