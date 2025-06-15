@@ -126,7 +126,7 @@ This portfolio is automatically deployed to GitHub Pages and accessible at [nade
 ## 📞 Contact
 
 - **Email:** [naderelsayed9x@gmail.com](mailto:naderelsayed9x@gmail.com)
-- **LinkedIn:** [Nader Elnagar](https://www.linkedin.com/in/nader-elnagar-430251231)
+- **LinkedIn:** [Nader Elnagar](https://www.linkedin.com/in/nader7x)
 - **GitHub:** [@Nader7x](https://github.com/Nader7x)
 - **Location:** Egypt
 
