@@ -357,16 +357,29 @@ body {
 }
 
 .tab {
-    padding: 6px 12px;
+    padding: 8px 16px;
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 6px 6px 0 0;
+    border-radius: 8px 8px 0 0;
     color: #858585;
     font-size: 12px;
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     cursor: pointer;
     border: 1px solid transparent;
     border-bottom: none;
+    position: relative;
+    user-select: none;
+}
+.tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .tab.active {
@@ -374,11 +387,17 @@ body {
     color: #cccccc;
     border-color: #3e3e42;
     border-bottom: 1px solid #1e1e1e;
+    transform: translateY(-1px);
+}
+
+.tab.active::before {
+    opacity: 1;
 }
 
 .tab:hover:not(.active) {
     background: rgba(255, 255, 255, 0.1);
     color: #cccccc;
+    transform: translateY(-1px);
 }
 
 .editor-actions {
@@ -426,25 +445,12 @@ body {
     background: rgba(0, 0, 0, 0.2);
 }
 
-.code-animation {
-    flex: 1;
-    padding: 0 16px;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    font-size: 13px;
-    line-height: 1.8;
-    overflow: hidden;
-    position: relative;
-}
-
-.code-line {
+.code-animation .code-line {
     opacity: 0;
     transform: translateX(-20px);
-    animation: codeTyping 1s ease-out forwards;
-    color: #d4d4d4;
-    white-space: nowrap;
-    position: relative;
-    padding: 2px 0;
+    animation: codeTypingSmooth 0.8s ease-out forwards;
 }
+
 
 /* Syntax highlighting colors */
 .code-line.comment { color: #6a9955; font-style: italic; }
@@ -587,14 +593,14 @@ body {
     animation-delay: 3s;
 }
 
-@keyframes codeTyping {
+@keyframes codeTypingSmooth {
     0% {
         opacity: 0;
         transform: translateX(-20px);
     }
-    50% {
-        opacity: 0.7;
-        transform: translateX(-5px);
+    60% {
+        opacity: 0.8;
+        transform: translateX(-3px);
     }
     100% {
         opacity: 1;
