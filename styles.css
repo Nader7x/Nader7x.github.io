@@ -501,6 +501,7 @@ body {
     opacity: 1;
 }
 
+/* Fixed cursor animation - much slower and smoother */
 .typing-cursor {
     position: absolute;
     top: 50%;
@@ -508,8 +509,38 @@ body {
     width: 2px;
     height: 20px;
     background: var(--accent-color);
-    animation: blink 1s infinite, cursorMove 5s infinite;
+    animation: blink 1.2s infinite, cursorMove 12s infinite ease-in-out;
     z-index: 10;
+    transition: all 0.8s ease;
+}
+
+@keyframes cursorMove {
+    0%, 100% { 
+        top: 45%; 
+        right: 20px; 
+    }
+    20% { 
+        top: 35%; 
+        right: 45px; 
+    }
+    40% { 
+        top: 65%; 
+        right: 35px; 
+    }
+    60% { 
+        top: 55%; 
+        right: 50px; 
+    }
+    80% { 
+        top: 40%; 
+        right: 25px; 
+    }
+}
+
+@keyframes blink {
+    0%, 45% { opacity: 1; }
+    50%, 95% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 .code-effects {
