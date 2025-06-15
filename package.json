@@ -30,7 +30,7 @@
     "htmlhint": "^1.1.4",
     "stylelint": "^15.10.3",
     "stylelint-config-standard": "^34.0.0",
-    "eslint": "^8.48.0"
+    "eslint": "^9.29.0"
   },
   "engines": {
     "node": ">=16.0.0",
