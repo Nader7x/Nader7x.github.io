@@ -34,21 +34,22 @@ const codeAnimation = document.querySelector('.code-animation');
 const lineNumbers = document.querySelector('.line-numbers');
 
 // Different file contents for each tab
+// Updated file contents with shorter text
 const fileContents = {
     'main.js': {
         lines: [
             { content: '// 🚀 Welcome to my portfolio', type: 'comment' },
-            { content: 'const <span class="variable">developer</span> = {', type: 'keyword' },
-            { content: '  <span class="key">name</span>: <span class="string">\'Nader Elsayed Elnagar\'</span>,', type: 'property' },
+            { content: 'const <span class="variable">dev</span> = {', type: 'keyword' },
+            { content: '  <span class="key">name</span>: <span class="string">\'Nader Elnagar\'</span>,', type: 'property' },
             { content: '  <span class="key">role</span>: <span class="string">\'Software Engineer\'</span>,', type: 'property' },
             { content: '  <span class="key">location</span>: <span class="string">\'Egypt 🇪🇬\'</span>,', type: 'property' },
-            { content: '  <span class="key">skills</span>: [<span class="string">\'C#\'</span>, <span class="string">\'JavaScript\'</span>, <span class="string">\'Python\'</span>],', type: 'property' },
-            { content: '  <span class="key">frameworks</span>: [<span class="string">\'.NET\'</span>, <span class="string">\'React\'</span>, <span class="string">\'Node.js\'</span>],', type: 'property' },
-            { content: '  <span class="key">passion</span>: <span class="string">\'Building Innovative Solutions\'</span>,', type: 'property' },
+            { content: '  <span class="key">skills</span>: [<span class="string">\'C#\'</span>, <span class="string">\'JS\'</span>, <span class="string">\'Python\'</span>],', type: 'property' },
+            { content: '  <span class="key">frameworks</span>: [<span class="string">\'.NET\'</span>, <span class="string">\'React\'</span>],', type: 'property' },
+            { content: '  <span class="key">passion</span>: <span class="string">\'Innovation\'</span>,', type: 'property' },
             { content: '  <span class="key">graduation</span>: <span class="number">2025</span>,', type: 'property' },
-            { content: '  <span class="key">status</span>: <span class="string">\'Ready to Code! 💻\'</span>', type: 'property' },
+            { content: '  <span class="key">status</span>: <span class="string">\'Ready! 💻\'</span>', type: 'property' },
             { content: '};', type: 'keyword' },
-            { content: '<span class="method">console</span>.<span class="method">log</span>(<span class="variable">developer</span>);', type: 'function' }
+            { content: '<span class="method">console</span>.<span class="method">log</span>(<span class="variable">dev</span>);', type: 'function' }
         ],
         lineCount: 12
     },
@@ -57,42 +58,35 @@ const fileContents = {
             { content: '{', type: 'keyword' },
             { content: '  <span class="key">"name"</span>: <span class="string">"nader-portfolio"</span>,', type: 'property' },
             { content: '  <span class="key">"version"</span>: <span class="string">"2.0.0"</span>,', type: 'property' },
-            { content: '  <span class="key">"description"</span>: <span class="string">"Personal portfolio website"</span>,', type: 'property' },
-            { content: '  <span class="key">"author"</span>: <span class="string">"Nader Elsayed Elnagar"</span>,', type: 'property' },
-            { content: '  <span class="key">"technologies"</span>: [', type: 'property' },
-            { content: '    <span class="string">"HTML5"</span>, <span class="string">"CSS3"</span>, <span class="string">"JavaScript"</span>,', type: 'property' },
-            { content: '    <span class="string">"C#"</span>, <span class="string">".NET Core"</span>, <span class="string">"React"</span>', type: 'property' },
+            { content: '  <span class="key">"author"</span>: <span class="string">"Nader Elnagar"</span>,', type: 'property' },
+            { content: '  <span class="key">"tech"</span>: [', type: 'property' },
+            { content: '    <span class="string">"HTML5"</span>, <span class="string">"CSS3"</span>,', type: 'property' },
+            { content: '    <span class="string">"JavaScript"</span>, <span class="string">"C#"</span>', type: 'property' },
             { content: '  ],', type: 'property' },
-            { content: '  <span class="key">"repository"</span>: <span class="string">"https://github.com/Nader7x"</span>,', type: 'property' },
             { content: '  <span class="key">"status"</span>: <span class="string">"active"</span>,', type: 'property' },
             { content: '  <span class="key">"year"</span>: <span class="number">2025</span>', type: 'property' },
             { content: '}', type: 'keyword' }
         ],
-        lineCount: 13
+        lineCount: 11
     },
     'README.md': {
         lines: [
-            { content: '# 🚀 Nader Elsayed Portfolio', type: 'comment' },
+            { content: '# 🚀 Nader Portfolio', type: 'comment' },
             { content: '', type: 'property' },
             { content: '## 👨‍💻 About Me', type: 'comment' },
-            { content: 'Software Engineer passionate about building', type: 'property' },
-            { content: 'innovative solutions with modern technologies.', type: 'property' },
+            { content: 'Software Engineer passionate', type: 'property' },
+            { content: 'about modern technologies.', type: 'property' },
             { content: '', type: 'property' },
-            { content: '### 🛠️ Technical Skills', type: 'comment' },
-            { content: '- **Backend:** C#, .NET Core, Python', type: 'property' },
-            { content: '- **Frontend:** JavaScript, React, HTML5, CSS3', type: 'property' },
-            { content: '- **Database:** PostgreSQL, MongoDB, Redis', type: 'property' },
-            { content: '- **Tools:** Git, Docker, SignalR, GraphQL', type: 'property' },
+            { content: '### 🛠️ Skills', type: 'comment' },
+            { content: '- **Backend:** C#, .NET, Python', type: 'property' },
+            { content: '- **Frontend:** JS, React, HTML', type: 'property' },
+            { content: '- **Database:** PostgreSQL, MongoDB', type: 'property' },
             { content: '', type: 'property' },
-            { content: '### 🎓 Education & Status', type: 'comment' },
-            { content: '**Software Engineering Graduate - 2025**', type: 'property' },
-            { content: '📍 **Location:** Egypt 🇪🇬', type: 'property' },
-            { content: '✉️ **Contact:** naderelsayed9x@gmail.com', type: 'property' }
+            { content: '📍 **Location:** Egypt 🇪🇬', type: 'property' }
         ],
-        lineCount: 16
+        lineCount: 12
     }
 };
-
 // Function to update line numbers based on file content
 function updateLineNumbers(count) {
     if (!lineNumbers) return;
