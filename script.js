@@ -1,60 +1,246 @@
-// Mobile Navigation
+// Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
     });
-});
 
-// Active Navigation Link
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section');
+    // Close menu when clicking on a navigation link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+    });
+}
+
+// Code Editor File Tab Switching Functionality
+const tabs = document.querySelectorAll('.tab');
+const codeAnimation = document.querySelector('.code-animation');
+const lineNumbers = document.querySelector('.line-numbers');
+
+// Different file contents for each tab
+const fileContents = {
+    'main.js': {
+        lines: [
+            { content: '// 🚀 Welcome to my portfolio', type: 'comment' },
+            { content: 'const <span class="variable">developer</span> = {', type: 'keyword' },
+            { content: '  <span class="key">name</span>: <span class="string">\'Nader Elsayed Elnagar\'</span>,', type: 'property' },
+            { content: '  <span class="key">role</span>: <span class="string">\'Software Engineer\'</span>,', type: 'property' },
+            { content: '  <span class="key">location</span>: <span class="string">\'Egypt 🇪🇬\'</span>,', type: 'property' },
+            { content: '  <span class="key">skills</span>: [<span class="string">\'C#\'</span>, <span class="string">\'JavaScript\'</span>, <span class="string">\'Python\'</span>],', type: 'property' },
+            { content: '  <span class="key">frameworks</span>: [<span class="string">\'.NET\'</span>, <span class="string">\'React\'</span>, <span class="string">\'Node.js\'</span>],', type: 'property' },
+            { content: '  <span class="key">passion</span>: <span class="string">\'Building Innovative Solutions\'</span>,', type: 'property' },
+            { content: '  <span class="key">graduation</span>: <span class="number">2025</span>,', type: 'property' },
+            { content: '  <span class="key">status</span>: <span class="string">\'Ready to Code! 💻\'</span>', type: 'property' },
+            { content: '};', type: 'keyword' },
+            { content: '<span class="method">console</span>.<span class="method">log</span>(<span class="variable">developer</span>);', type: 'function' }
+        ],
+        lineCount: 12
+    },
+    'config.json': {
+        lines: [
+            { content: '{', type: 'keyword' },
+            { content: '  <span class="key">"name"</span>: <span class="string">"nader-portfolio"</span>,', type: 'property' },
+            { content: '  <span class="key">"version"</span>: <span class="string">"2.0.0"</span>,', type: 'property' },
+            { content: '  <span class="key">"description"</span>: <span class="string">"Personal portfolio website"</span>,', type: 'property' },
+            { content: '  <span class="key">"author"</span>: <span class="string">"Nader Elsayed Elnagar"</span>,', type: 'property' },
+            { content: '  <span class="key">"technologies"</span>: [', type: 'property' },
+            { content: '    <span class="string">"HTML5"</span>, <span class="string">"CSS3"</span>, <span class="string">"JavaScript"</span>,', type: 'property' },
+            { content: '    <span class="string">"C#"</span>, <span class="string">".NET Core"</span>, <span class="string">"React"</span>', type: 'property' },
+            { content: '  ],', type: 'property' },
+            { content: '  <span class="key">"repository"</span>: <span class="string">"https://github.com/Nader7x"</span>,', type: 'property' },
+            { content: '  <span class="key">"status"</span>: <span class="string">"active"</span>,', type: 'property' },
+            { content: '  <span class="key">"year"</span>: <span class="number">2025</span>', type: 'property' },
+            { content: '}', type: 'keyword' }
+        ],
+        lineCount: 13
+    },
+    'README.md': {
+        lines: [
+            { content: '# 🚀 Nader Elsayed Portfolio', type: 'comment' },
+            { content: '', type: 'property' },
+            { content: '## 👨‍💻 About Me', type: 'comment' },
+            { content: 'Software Engineer passionate about building', type: 'property' },
+            { content: 'innovative solutions with modern technologies.', type: 'property' },
+            { content: '', type: 'property' },
+            { content: '### 🛠️ Technical Skills', type: 'comment' },
+            { content: '- **Backend:** C#, .NET Core, Python', type: 'property' },
+            { content: '- **Frontend:** JavaScript, React, HTML5, CSS3', type: 'property' },
+            { content: '- **Database:** PostgreSQL, MongoDB, Redis', type: 'property' },
+            { content: '- **Tools:** Git, Docker, SignalR, GraphQL', type: 'property' },
+            { content: '', type: 'property' },
+            { content: '### 🎓 Education & Status', type: 'comment' },
+            { content: '**Software Engineering Graduate - 2025**', type: 'property' },
+            { content: '📍 **Location:** Egypt 🇪🇬', type: 'property' },
+            { content: '✉️ **Contact:** naderelsayed9x@gmail.com', type: 'property' }
+        ],
+        lineCount: 16
+    }
+};
+
+// Function to update line numbers based on file content
+function updateLineNumbers(count) {
+    if (!lineNumbers) return;
     
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-        }
-    });
+    lineNumbers.innerHTML = '';
+    for (let i = 1; i <= count; i++) {
+        const span = document.createElement('span');
+        span.textContent = i;
+        lineNumbers.appendChild(span);
+    }
+}
 
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-            link.classList.add('active');
-        }
+// Function to switch between different file contents
+function switchFile(fileName) {
+    const file = fileContents[fileName];
+    if (!file || !codeAnimation) return;
+
+    // Clear current content with fade out effect
+    codeAnimation.style.opacity = '0';
+    
+    setTimeout(() => {
+        // Clear and rebuild content
+        codeAnimation.innerHTML = '';
+        
+        // Update line numbers
+        updateLineNumbers(file.lineCount);
+
+        // Add new content with staggered animation
+        file.lines.forEach((line, index) => {
+            const div = document.createElement('div');
+            div.className = `code-line ${line.type}`;
+            div.innerHTML = line.content;
+            div.style.animationDelay = `${(index + 1) * 0.1}s`;
+            div.style.opacity = '0';
+            codeAnimation.appendChild(div);
+        });
+
+        // Fade in new content
+        codeAnimation.style.opacity = '1';
+        
+        // Trigger animations
+        setTimeout(() => {
+            const codeLines = codeAnimation.querySelectorAll('.code-line');
+            codeLines.forEach(line => {
+                line.style.opacity = '1';
+            });
+        }, 100);
+        
+    }, 200);
+}
+
+// Add click event listeners to file tabs
+if (tabs.length > 0) {
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            tab.classList.add('active');
+            
+            // Switch to selected file content
+            switchFile(tab.textContent);
+            
+            // Add click effect
+            tab.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                tab.style.transform = '';
+            }, 150);
+        });
     });
-});
+}
 
 // Smooth scrolling for navigation links
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const targetId = link.getAttribute('href').slice(1);
-        const targetSection = document.getElementById(targetId);
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
         
-        if (targetSection) {
-            const offsetTop = targetSection.offsetTop - 80;
+        if (target) {
+            const navHeight = document.querySelector('.navbar').offsetHeight;
+            const targetPosition = target.offsetTop - navHeight - 20;
+            
             window.scrollTo({
-                top: offsetTop,
+                top: targetPosition,
                 behavior: 'smooth'
             });
         }
     });
 });
 
-// Scroll animations
+// Enhanced navbar scroll effect
+let lastScrollTop = 0;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Change navbar background based on scroll
+    if (scrollTop > 100) {
+        navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+        navbar.style.backdropFilter = 'blur(15px)';
+    } else {
+        navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+        navbar.style.backdropFilter = 'blur(10px)';
+    }
+    
+    // Hide/show navbar on scroll (optional enhancement)
+    if (scrollTop > lastScrollTop && scrollTop > 200) {
+        // Scrolling down
+        navbar.style.transform = 'translateY(-100%)';
+    } else {
+        // Scrolling up
+        navbar.style.transform = 'translateY(0)';
+    }
+    
+    lastScrollTop = scrollTop;
+});
+
+// Active navigation link highlighting
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+    let currentSection = '';
+    const scrollPosition = window.scrollY + 200;
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = sectionId;
+        }
+    });
+
+    // Update active nav link
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+        }
+    });
+});
+
+// Intersection Observer for fade-in animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -64,88 +250,49 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('fade-in');
+            
+            // Special animation for stats counters
+            if (entry.target.classList.contains('stat')) {
+                animateCounter(entry.target);
+            }
         }
     });
 }, observerOptions);
 
-// Observe all sections and cards
-document.addEventListener('DOMContentLoaded', () => {
-    const elementsToAnimate = document.querySelectorAll('section, .project-card, .skill-category, .stat');
-    elementsToAnimate.forEach(el => observer.observe(el));
+// Observe elements for animations
+document.querySelectorAll('.skill-category, .project-card, .stat, .contact-method').forEach(el => {
+    observer.observe(el);
 });
 
-// Typing effect for hero subtitle
-const subtitle = document.querySelector('.hero-subtitle');
-const originalText = subtitle.textContent;
-let index = 0;
-
-function typeWriter() {
-    if (index < originalText.length) {
-        subtitle.textContent = originalText.slice(0, index + 1);
-        index++;
-        setTimeout(typeWriter, 100);
-    }
+// Counter animation for stats
+function animateCounter(element) {
+    const numberElement = element.querySelector('.stat-number');
+    if (!numberElement) return;
+    
+    const finalNumber = numberElement.textContent;
+    const numericValue = parseInt(finalNumber.replace(/\D/g, ''));
+    
+    if (isNaN(numericValue)) return;
+    
+    let currentNumber = 0;
+    const increment = numericValue / 30;
+    const suffix = finalNumber.replace(/\d/g, '');
+    
+    const timer = setInterval(() => {
+        currentNumber += increment;
+        if (currentNumber >= numericValue) {
+            currentNumber = numericValue;
+            clearInterval(timer);
+        }
+        
+        numberElement.textContent = Math.floor(currentNumber) + suffix;
+    }, 50);
 }
 
-// Start typing effect when page loads
-window.addEventListener('load', () => {
-    subtitle.textContent = '';
-    setTimeout(typeWriter, 1000);
-});
-
-// Particle effect for hero section (optional enhancement)
-function createParticle() {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.cssText = `
-        position: absolute;
-        width: 2px;
-        height: 2px;
-        background: var(--accent-color);
-        pointer-events: none;
-        opacity: 0.6;
-        border-radius: 50%;
-    `;
-    
-    const x = Math.random() * window.innerWidth;
-    const y = Math.random() * window.innerHeight;
-    
-    particle.style.left = x + 'px';
-    particle.style.top = y + 'px';
-    
-    document.body.appendChild(particle);
-    
-    // Animate particle
-    const animation = particle.animate([
-        { transform: 'translateY(0px)', opacity: 0.6 },
-        { transform: 'translateY(-100px)', opacity: 0 }
-    ], {
-        duration: 3000,
-        easing: 'ease-out'
-    });
-    
-    animation.onfinish = () => particle.remove();
-}
-
-// Create particles periodically
-setInterval(createParticle, 2000);
-
-// Enhanced scroll effect for navbar
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(10, 10, 10, 0.98)';
-        navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
-    } else {
-        navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-        navbar.style.boxShadow = 'none';
-    }
-});
-
-// Project card hover effects
+// Enhanced project card interactions
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-8px) scale(1.02)';
+        card.style.transform = 'translateY(-12px) scale(1.02)';
     });
     
     card.addEventListener('mouseleave', () => {
@@ -153,27 +300,106 @@ document.querySelectorAll('.project-card').forEach(card => {
     });
 });
 
-// Social links hover effect
+// Skill tag hover effects
+document.querySelectorAll('.skill-tag').forEach(tag => {
+    tag.addEventListener('mouseenter', () => {
+        tag.style.transform = 'translateY(-3px) scale(1.05)';
+    });
+    
+    tag.addEventListener('mouseleave', () => {
+        tag.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// Social link enhanced interactions
 document.querySelectorAll('.social-link').forEach(link => {
     link.addEventListener('mouseenter', () => {
-        link.style.transform = 'translateY(-2px) scale(1.1)';
+        link.style.transform = 'translateY(-4px) rotate(5deg)';
     });
     
     link.addEventListener('mouseleave', () => {
-        link.style.transform = 'translateY(0) scale(1)';
+        link.style.transform = 'translateY(0) rotate(0deg)';
     });
 });
 
-// Prevent body scroll when mobile menu is open
-hamburger.addEventListener('click', () => {
-    document.body.classList.toggle('menu-open');
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.classList.remove('menu-open');
+// Initialize page
+document.addEventListener('DOMContentLoaded', () => {
+    // Add loading animation to elements
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+    }, 100);
+    
+    // Initialize line numbers for default file
+    if (codeAnimation && lineNumbers) {
+        updateLineNumbers(fileContents['main.js'].lineCount);
+    }
+    
+    // Set initial active nav link
+    if (window.location.hash) {
+        const activeLink = document.querySelector(`a[href="${window.location.hash}"]`);
+        if (activeLink) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            activeLink.classList.add('active');
+        }
     }
 });
+
+// Handle page visibility change (pause animations when tab is not active)
+document.addEventListener('visibilitychange', () => {
+    const codeEditor = document.querySelector('.code-editor');
+    if (document.hidden) {
+        codeEditor?.style.setProperty('--animation-play-state', 'paused');
+    } else {
+        codeEditor?.style.setProperty('--animation-play-state', 'running');
+    }
+});
+
+// Keyboard navigation support
+document.addEventListener('keydown', (e) => {
+    // ESC key closes mobile menu
+    if (e.key === 'Escape' && navMenu?.classList.contains('active')) {
+        hamburger?.classList.remove('active');
+        navMenu?.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    }
+    
+    // Arrow keys for tab navigation
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        const activeTab = document.querySelector('.tab.active');
+        if (activeTab) {
+            const currentIndex = Array.from(tabs).indexOf(activeTab);
+            let nextIndex;
+            
+            if (e.key === 'ArrowLeft') {
+                nextIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+            } else {
+                nextIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+            }
+            
+            tabs[nextIndex].click();
+        }
+    }
+});
+
+// Performance optimization: Throttle scroll events
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
+
+// Apply throttling to scroll events
+window.addEventListener('scroll', throttle(() => {
+    // Any additional scroll-based functionality can go here
+}, 16)); // ~60fps
+
+console.log('🚀 Portfolio initialized successfully!');
+console.log('📅 Script loaded on:', new Date().toLocaleString());
+console.log('👨‍💻 Welcome to Nader\'s Portfolio!');
