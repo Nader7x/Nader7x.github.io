@@ -1,0 +1,135 @@
+User-agent: *
+Allow: /
+
+# Nader Elsayed Elnagar - Software Engineer
+
+## Navigation
+- Home
+- About
+- Resume
+- Skills
+- Projects
+- Contact
+
+## Hero Section
+**Hi, I'm Nader Elsayed Elnagar**
+Software Engineer
+
+Graduated Software Engineering Student passionate about building innovative solutions with modern technologies. Based in Egypt, I specialize in full-stack development with expertise in both backend and frontend technologies.
+
+[Button: View My Work](#projects)
+[Button: Get In Touch](#contact)
+
+Social Links:
+- [GitHub Profile](https://github.com/Nader7x)
+- [LinkedIn Profile](https://www.linkedin.com/in/nader7x)
+- [Email](mailto:naderelsayed9x@gmail.com)
+
+## About Me
+I'm a passionate Software Engineer with a fresh perspective on modern software development. As a recent graduate in Software Engineering, I bring enthusiasm for learning and implementing cutting-edge technologies to solve real-world problems.
+
+My expertise spans across full-stack development, with a strong foundation in both backend and frontend technologies. I enjoy working on complex projects that challenge me to grow and learn new technologies while delivering high-quality solutions.
+
+**Stats:**
+- 15+ Projects Completed
+- 5+ Technologies Mastered
+- 2025 Graduation Year
+
+## My Resume
+**Software Engineer Resume**
+Complete overview of my skills, experience, and projects.
+- Last updated: June 2025
+- PDF Format
+
+**What's Inside:**
+- Education & Certifications
+- Professional Experience
+- Technical Skills & Tools
+- Featured Projects & Achievements
+- Contact Information
+
+**Stats:**
+- 15+ Projects
+- 5+ Technologies
+- 2025 Graduate
+
+[Button: View Resume](https://drive.google.com/file/d/1zkf0SmypoG3oINRB9WGimJ_m3x4FCPjt/view?usp=drivesdk)
+[Button: Download PDF](https://drive.google.com/uc?export=download&id=1zkf0SmypoG3oINRB9WGimJ_m3x4FCPjt)
+
+## Technical Skills
+
+### Programming Languages
+- Python
+- C#
+- JavaScript
+- TypeScript
+- HTML
+- CSS
+
+### Frameworks & Technologies
+- Node.js
+- React
+- .NET Core
+- Next.js
+- Express.js
+- SignalR
+
+### Databases
+- PostgreSQL
+- MongoDB
+- SQL Server
+- Redis
+
+### Tools & Others
+- Git
+- Docker
+- REST API
+- GraphQL
+- JWT
+- Swagger
+
+## Featured Projects
+
+### Footex - Football Management System
+Comprehensive football management system with advanced features including match simulation, real-time statistics, user authentication, and live match events using SignalR.
+Technologies: C#, .NET Core, SignalR, JWT, Azure Blob
+[GitHub Repository](https://github.com/Nader7x/Footex)
+
+### AI Match Simulation Model
+AI-powered football match prediction and simulation API with asynchronous processing, webhook callbacks, and real-time notifications during simulation.
+Technologies: Python, FastAPI, Uvicorn, Machine Learning, AI
+[GitHub Repository](https://github.com/Nader7x/MatchSimulationModel)
+
+### Premier League Stadiums System
+Comprehensive Premier League data management system with GraphQL API, Redis caching, MongoDB integration, and Swagger documentation.
+Technologies: Node.js, Express.js, GraphQL, MongoDB, Redis
+[GitHub Repository](https://github.com/Nader7x/PremierLeagueStadiums)
+
+### Opsphere - DevOps Platform
+DevOps management platform with real-time notifications using SignalR, JWT authentication, and comprehensive API documentation with Swagger.
+Technologies: C#, .NET Core, SignalR, SQL Server, JWT
+[GitHub Repository](https://github.com/Nader7x/DevOpsWebsite)
+
+### Information Retrieval System
+Advanced information retrieval system with tokenization, stemming, positional indexing, boolean search, and TF-IDF scoring for document ranking.
+Technologies: Python, NLP, Text Processing, Information Retrieval
+[GitHub Repository](https://github.com/Nader7x/IRProject)
+
+### Caesar Cipher Implementation
+Cryptography project implementing Caesar cipher with both substitution and transposition methods for text encryption and decryption.
+Technologies: Python, Cryptography, Security
+[GitHub Repository](https://github.com/Nader7x/CaesarCypher)
+
+## Get In Touch
+I'm always interested in new opportunities and exciting projects. Whether you want to discuss a potential collaboration or just say hello, feel free to reach out!
+
+- **Email:** naderelsayed9x@gmail.com ([mailto:naderelsayed9x@gmail.com](mailto:naderelsayed9x@gmail.com))
+- **LinkedIn:** Connect with me ([https://www.linkedin.com/in/nader7x](https://www.linkedin.com/in/nader7x))
+- **GitHub:** Check out my work ([https://github.com/Nader7x](https://github.com/Nader7x))
+- **Location:** Egypt
+
+## Footer
+&copy; 2025 Nader Elsayed Elnagar. All rights reserved.
+- [GitHub](https://github.com/Nader7x)
+- [LinkedIn](https://www.linkedin.com/in/nader7x)
+- [Email](mailto:naderelsayed9x@gmail.com)

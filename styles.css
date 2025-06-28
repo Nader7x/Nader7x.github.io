@@ -487,8 +487,10 @@ body {
 .code-line.function { color: #dcdcaa; }
 
 .variable { color: #9cdcfe; }
-.key { color: #92c5f7; }
-.string { color: #ce9178; }
+/* Adjusted .key for better contrast with #1e1e1e background */
+.key { color: #A8D8FF; } /* Lightened blue */
+/* Adjusted .string for better contrast with #1e1e1e background */
+.string { color: #FFB3A7; } /* Lightened orange/coral */
 .number { color: #b5cea8; }
 .method { color: #dcdcaa; }
 
@@ -1098,19 +1100,19 @@ section {
 }
 
 .skill-tag {
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--accent-color);
+    background: rgba(59, 130, 246, 0.2); /* Increased background opacity for better base for text */
+    color: #E0E0E0; /* Light gray for text, good contrast on darker blue */
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 500;
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.3); /* Slightly more visible border */
     transition: var(--transition);
 }
 
 .skill-tag:hover {
-    background: var(--accent-color);
-    color: white;
+    background: var(--accent-hover); /* Using accent-hover for a darker, richer blue */
+    color: var(--text-primary); /* White text on hover for max contrast */
     transform: translateY(-2px);
 }
 
@@ -1202,13 +1204,13 @@ section {
 }
 
 .tech-tag {
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--accent-color);
+    background: rgba(59, 130, 246, 0.2); /* Increased background opacity */
+    color: #E0E0E0; /* Light gray for text */
     padding: 0.25rem 0.75rem;
     border-radius: 12px;
     font-size: 0.8rem;
     font-weight: 500;
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.3); /* Slightly more visible border */
 }
 
 /* Contact Section */
@@ -1286,7 +1288,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--text-muted);
+    color: var(--text-secondary); /* Changed from text-muted to text-secondary for better contrast */
 }
 
 .footer-links {
@@ -1295,13 +1297,13 @@ section {
 }
 
 .footer-links a {
-    color: var(--text-muted);
+    color: var(--text-secondary); /* Changed from text-muted to text-secondary */
     text-decoration: none;
     transition: var(--transition);
 }
 
 .footer-links a:hover {
-    color: var(--accent-color);
+    color: var(--accent-color); /* This hover state should be fine */
 }
 
 /* Responsive Design */
