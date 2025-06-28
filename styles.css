@@ -1100,13 +1100,13 @@ section {
 }
 
 .skill-tag {
-    background: rgba(59, 130, 246, 0.2); /* Increased background opacity for better base for text */
-    color: #E0E0E0; /* Light gray for text, good contrast on darker blue */
+    background: rgba(59, 130, 246, 0.3); /* Increased opacity from 0.2 to 0.3 */
+    color: #FFFFFF; /* Changed text to pure white for better contrast */
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 500;
-    border: 1px solid rgba(59, 130, 246, 0.3); /* Slightly more visible border */
+    border: 1px solid rgba(59, 130, 246, 0.4); /* Slightly more visible border */
     transition: var(--transition);
 }
 
@@ -1204,13 +1204,13 @@ section {
 }
 
 .tech-tag {
-    background: rgba(59, 130, 246, 0.2); /* Increased background opacity */
-    color: #E0E0E0; /* Light gray for text */
+    background: rgba(59, 130, 246, 0.3); /* Increased opacity from 0.2 to 0.3 */
+    color: #FFFFFF; /* Changed text to pure white */
     padding: 0.25rem 0.75rem;
     border-radius: 12px;
     font-size: 0.8rem;
     font-weight: 500;
-    border: 1px solid rgba(59, 130, 246, 0.3); /* Slightly more visible border */
+    border: 1px solid rgba(59, 130, 246, 0.4); /* Slightly more visible border */
 }
 
 /* Contact Section */
